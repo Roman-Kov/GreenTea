@@ -5,6 +5,7 @@ import com.fullstory.FSOnReadyListener
 import com.fullstory.FSSessionData
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import net.gaket.tools.logging.CrashlyticsTree
+import net.gaket.tools.logging.FileLoggingTree
 import net.gaket.tools.logging.WtfNotifyQaTree
 import ru.gaket.themoviedb.di.AppComponent
 import ru.gaket.themoviedb.utils.FullstoryTree
@@ -22,10 +23,10 @@ class MovieApp : Application(), FSOnReadyListener {
   }
 
   private fun plantTimberForest() {
-    Timber.plant(Timber.DebugTree())
     Timber.plant(CrashlyticsTree())
     Timber.plant(WtfNotifyQaTree(this))
     Timber.plant(FullstoryTree())
+    Timber.plant(FileLoggingTree(this))
   }
 
   override fun onReady(sessionData: FSSessionData) {
